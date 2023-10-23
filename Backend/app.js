@@ -3,7 +3,7 @@ const Blog = require("./model/blogModel");
 const express = require("express")
 const app = express();
 const cors = require("cors")
-
+const port = 2000;
 // Enable Cross-Origin Resource Sharing (CORS) for requests from http://localhost:5173
 app.use(cors({
     origin : "http://localhost:5173",
@@ -112,6 +112,6 @@ app.delete("/blogs/:id",async (req,res)=>{
 })
 
 // Start the server on port 2000
-app.listen(2000,()=>{
-    console.log("Nodejs has started at port 2000")
+app.listen(port,()=>{
+    console.log(`app listening on port http://127.0.0.1:${port}`);
 })
