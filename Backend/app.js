@@ -92,7 +92,7 @@ app.patch("/blogs/:id",async (req,res)=>{
         subTitle : subTitle,
         description : description
     })
-
+    
     res.status(200).json({
         message : "Blog updated succesfully"
     })
