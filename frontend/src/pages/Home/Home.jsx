@@ -4,9 +4,11 @@ import axios from "axios";
 function Home() {
   const [blogs, setBlogs] = useState([]);
   const fetchBlogs = async () => {
-    const respose = await axios.get("http://localhost:2000/blogs");
-    if (respose.status == 200) {
+    try {
+      const respose = await axios.get("http://localhost:2000/blogs");
       setBlogs(respose.data.blogs);
+    } catch (error) {
+      alert("something went wrong");
     }
   };
   useEffect(() => {
@@ -17,16 +19,13 @@ function Home() {
     <div>
       <Navbar />
 {blogs.map((blog) => (
-  
-  <div key={blog._id} className="card-body max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-  <a href="#">
-    <h5 key={blog._id} className="card-title mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+  <div key={blog._id} className="card-body ml-30 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <h5  className="card-title mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
     {blog.title}</h5>
-  </a>
-  <h3 key={blog._id} className="card-subtitle mb-3 font-normal text-gray-700 dark:text-gray-400">
+  <h3 className="card-subtitle mb-3 font-normal text-gray-700 dark:text-gray-400">
     {blog.subTitle}
   </h3>
-  <p key={blog._id} className="card-disc mb-3 font-normal text-gray-700 dark:text-gray-400">
+  <p className="card-disc mb-3 font-normal text-gray-700 dark:text-gray-400">
     {blog.description}
   </p>
   <a

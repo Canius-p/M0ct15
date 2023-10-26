@@ -28,7 +28,8 @@ app.get("/",(req,res)=>{
 // Fetches all blogs from the Blog model and returns them as a JSON response
 // If there are no blogs, returns a 404 status code with a message "Empty blogs"
 app.get("/blogs",async (req,res)=>{
-   const blogs =  await Blog.find()
+   try {
+    const blogs =  await Blog.find()
    if(blogs.length == 0){
     res.status(404).json({
         message : "Empty blogs"
@@ -39,24 +40,31 @@ app.get("/blogs",async (req,res)=>{
            blogs : blogs
         })
     }
+   } catch (error) {
+    alert("something went wrong")
+   }
 })
 
 // GET API -> /blogs/:id (single Blog)
 // Fetches a single blog with the given id and returns it as a JSON response
 // If no blog is found with the given id, returns a 404 status code with a message "No blog found"
 app.get("/blogs/:id",async (req,res)=>{
-   const id = req.params.id
-   const blog = await Blog.findById(id)
-    if(blog){
-        res.status(200).json({
-            message : "Blog fetched successfully",
-            data : blog
-        })
-    }else{
-        res.status(404).json({
-            message : "No blog found"
-        })
-    }
+  try {
+    const id = req.params.id
+    const blog = await Blog.findById(id)
+     if(blog){
+         res.status(200).json({
+             message : "Blog fetched successfully",
+             data : blog
+         })
+     }else{
+         res.status(404).json({
+             message : "No blog found"
+         })
+     }
+  } catch (error) {
+    alert("something went wrong")
+  }
 })
 
 // CREATE BLOG API  
@@ -66,16 +74,20 @@ app.post("/blogs", async(req,res)=>{
    const title = req.body.title;
    const subTitle = req.body.subTitle 
    const description = req.body.description
-
-   await Blog.create({
-        title : title  ,
-        subTitle : subTitle,
-        description : description
-    })
+try {
     
-    res.status(201).json({
-        message : "Blog created succesfully"
-    })
+   await Blog.create({
+    title : title  ,
+    subTitle : subTitle,
+    description : description
+})
+
+res.status(201).json({
+    message : "Blog created succesfully"
+})
+} catch (error) {
+  alert("something went wrong")  
+}
 })
 
 // UPDATE BLOG API 
@@ -87,6 +99,7 @@ app.patch("/blogs/:id",async (req,res)=>{
     const subTitle = req.body.subTitle
     const description = req.body.description
     
+  try {
     await Blog.findByIdAndUpdate(id,{
         title : title,
         subTitle : subTitle,
@@ -95,7 +108,10 @@ app.patch("/blogs/:id",async (req,res)=>{
     
     res.status(200).json({
         message : "Blog updated succesfully"
-    })
+    })  
+  } catch (error) {
+    alert("something went wrong")
+  }
 })
 
 // DELETE API 
