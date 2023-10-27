@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Navbar from "../../Components/Navbar/Navbar";
 import axios from "axios";
+import './Home.css'
 function Home() {
   const [blogs, setBlogs] = useState([]);
   const fetchBlogs = async () => {
