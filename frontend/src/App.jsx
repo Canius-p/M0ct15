@@ -3,6 +3,7 @@ import './App.css'
 import { BrowserRouter , Routes, Route } from 'react-router-dom'
 import Home from './pages/Home/Home'
 import CreateBlog from './pages/CreateBlog/CreateBlog'
+import SingleBlog from './pages/singleBlog/SingleBlog'
 function App() {
   return (
     <>
@@ -10,6 +11,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/createBlog' element={<CreateBlog />} />
+        <Route path='/singleBlog/:id' element={<SingleBlog/>} />
       </Routes>
       </BrowserRouter>
     </>
