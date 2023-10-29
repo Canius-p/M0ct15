@@ -41,7 +41,7 @@ app.get("/blogs",async (req,res)=>{
         })
     }
    } catch (error) {
-    alert("something went wrong")
+console.log("something went wrong")
    }
 })
 
@@ -55,7 +55,7 @@ app.get("/blogs/:id",async (req,res)=>{
      if(blog){
          res.status(200).json({
              message : "Blog fetched successfully",
-             data : blog
+             blog : blog
          })
      }else{
          res.status(404).json({
@@ -63,7 +63,9 @@ app.get("/blogs/:id",async (req,res)=>{
          })
      }
   } catch (error) {
-    alert("something went wrong")
+    // alert("something went wrong")
+    console.log("something went wrong")
+
   }
 })
 
@@ -86,7 +88,7 @@ res.status(201).json({
     message : "Blog created succesfully"
 })
 } catch (error) {
-  alert("something went wrong")  
+    console.log("something went wrong")  
 }
 })
 
@@ -110,7 +112,7 @@ app.patch("/blogs/:id",async (req,res)=>{
         message : "Blog updated succesfully"
     })  
   } catch (error) {
-    alert("something went wrong")
+    console.log("something went wrong")
   }
 })
 

@@ -3,7 +3,7 @@ import './App.css'
 import { BrowserRouter , Routes, Route } from 'react-router-dom'
 import Home from './pages/Home/Home'
 import CreateBlog from './pages/CreateBlog/CreateBlog'
-import SingleBlog from './pages/singleBlog/SingleBlog'
+import SingleBlog from './pages/SingleBlog/SingleBlog'
 function App() {
   return (
     <>
